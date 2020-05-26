@@ -37,6 +37,14 @@ const server = http.createServer((req, res) => {
             res.end(output);
         });
     }
+
+    // Handles Images
+    else if ((/\.(jpg|jpeg|png|gif)$/i).toLocaleString(pathName)) {
+        fs.readFile(`${__dirname}/data/img${pathName}`, (err, data) => {
+            res.writeHead(200, { 'Content-type': 'image/jpg'});
+            res.end(data);
+        });
+    }
     
     // Not found
     else {
